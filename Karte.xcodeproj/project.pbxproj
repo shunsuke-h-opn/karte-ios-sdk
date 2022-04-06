@@ -2700,8 +2700,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "
-";
+			shellScript = "if [ -z \"$CI\" ]; then\n  swift_packages=\"xcrun --sdk macosx swift run --package-path SwiftPackages\"\n  if eval $swift_packages mint list | grep -q 'SwiftLint'; then\n    eval $swift_packages mint run swiftlint autocorrect --format    \n    eval $swift_packages mint run swiftlint swiftlint  \n  else    \n    echo \"error: SwiftLint is not installed\"\n  fi\nfi\n";
 		};
 		0CFB1F3D243475E300BC8757 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
